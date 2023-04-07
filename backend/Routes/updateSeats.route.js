@@ -1,32 +1,43 @@
 const express=require("express");
+const { AddSeats } = require("../Controller/AddSeats");
+const { InitialSeats } = require("../Controller/InitialSeats");
 const { ReserveModel } = require("../Models/Reserve.Model");
 
 const updateSeatsRouter=express.Router();
 
 
 updateSeatsRouter.patch("/seats",async(req,res)=>{
-    const payload=req.body;
-  
-        let seats=await ReserveModel.find();
-        console.log(seats,"seats");
-        if(seats.length===0){
-            let matrix=[];
-            for (let i=0;i<12;i++){
-                let arr=[];
-                for (let j=0;j<7;j++){
-                    if(i===11 && j==3){
-                        break;
-                    }
-                    arr.push(0)
+        try {
+            let seats=await ReserveModel.find();
+            console.log(seats,"seats");
+            const {no_of_seats}=req.body;
+            if(seats.length===0){
+                let matrix=InitialSeats();
+                
+                for (let i=0;i<Number(no_of_seats);i++){
+                    matrix[0][i]=1;
                 }
-                matrix.push(arr);
-            }
-            console.log(matrix,"matrix to be pushed");
-           return  res.send("hi patch")
-        }else{
-           return  res.send("bye patch")
+                console.log(matrix,"matrix patch reque");
+                const save_matrix=new ReserveModel({matrix,"booked":no_of_seats});
+                await save_matrix.save();
+                return  res.status(200).send({"message":"Successfully booked seats"});
+            }else{
+              
+               let {matrix,_id,booked}=seats[0];
+    
+               let mat=AddSeats(matrix,no_of_seats);
+               console.log(mat,"mat")
+               //console.log(mat,_id,booked,"mat in patch req,_id");
+               const payload={"matrix":mat,"booked":Number(no_of_seats)+Number(booked)};
+                console.log(payload,"payload");
+               await ReserveModel.findByIdAndUpdate({_id},payload)
+               return res.status(200).send({"message":"Successfully booked seats"})
+            }       
+        } catch (error) {
+            console.log(error,"error");
+            return res.status(400).send({"message":"Error in booking seats"});
         }
-  
+       
 })
 
 module.exports={

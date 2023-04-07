@@ -9,7 +9,7 @@ getSeatsRouter.get("/",async(req,res)=>{
     try {
         const seats=await ReserveModel.find();
         console.log(seats,"seats");
-        res.status(200).send(seats);
+        res.status(200).send({"message":seats});
     } catch (error) {
         console.log(error,"error in get request");
         res.status(400).send({"message":"Error in GET seats Request"});

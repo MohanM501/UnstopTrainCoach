@@ -1,7 +1,8 @@
 const mongoose=require("mongoose");
 
 const reserveSchema=mongoose.Schema({
-    matrix:Array
+    matrix:Array,
+    booked:Number
 })
 
 const ReserveModel=mongoose.model("reserve",reserveSchema);

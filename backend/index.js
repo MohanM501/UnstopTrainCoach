@@ -3,6 +3,8 @@ const cors=require("cors");
 const { connection } = require('./Configue/db');
 const { getSeatsRouter } = require('./Routes/getseats.route');
 const { updateSeatsRouter } = require('./Routes/updateSeats.route');
+const { Validator } = require('./Middleware/Validator');
+const { OverFlow } = require('./Middleware/OverFlow');
 require("dotenv").config()
 
 const app=express();
@@ -23,7 +25,7 @@ app.get("/",(req,res)=>{
 // All Routes
 
 app.use("/seats",getSeatsRouter);
-app.use("/update",updateSeatsRouter);
+app.use("/update",Validator,OverFlow,updateSeatsRouter);
 
 
 app.listen(port, async()=>{
