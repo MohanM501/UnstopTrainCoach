@@ -8,19 +8,33 @@ import "./Layout.css";
 const Layout = () => {
     const [array,setArray]=useState([]);
     const dispatch=useDispatch();
-    const selector=useSelector(store=>store);
-    console.log(selector,"selector")
+    const {matrix,booked,isLoading}=useSelector(store=>store);
+    
+    useEffect(()=>{
+        let arr=[];
+        if(matrix.length>0){
+            for (let i=0;i<matrix.length;i++){
+                for (let j=0;j<matrix[i].length;j++){
+                    arr.push(matrix[i][j]);
+                }
+            }
+        }
+        console.log(arr,"arr in matrix useEffect");
+        setArray(arr);
+    },[matrix])
+
     useEffect(()=>{
         let arr=new Array(80).fill(0);
         console.table(arr,"arr")
         setArray(arr)
-        dispatch(Get_Matrix)
-    },[])
+        dispatch(Get_Matrix);
+    },[]);
+    
   return (
     <div className='container'>
             {array.length>0 && array.map((item,ind)=>{
                 return (
-                    (ind+1>=70?<div key={ind} className={"blue"}>{ind+1}</div>:((ind+1-3)%7===0?<div key={ind}  className={"gap"}>{ind+1}</div>:<div key={ind} className={item===0?'child':'child1'}>{ind+1}</div> ))     
+                    (ind+1>=70?<div key={ind} className={item==0?"blue":"blue1"}>{ind+1}</div>:((ind+1-3)%7===0?<div key={ind}  className={item==0?"gap":"gap1"}>{ind+1}</div>:<div key={ind} className={item===0?'child':'child1'}>{ind+1}</div> ))     
                 )
             })}
     </div>

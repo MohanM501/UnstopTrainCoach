@@ -56,7 +56,8 @@ const Update_Matrix=(quearyParams)=>(dispatch)=>{
         dispatch(Update_Request());
         return axios.patch(`${URL}/update/seats`,quearyParams)
         .then((r)=>{
-            console.log(r,"r.data");
+            console.log(r.data.message,"r.data");
+            alert(r.data.message);
             dispatch(Update_Success());
         }).catch((err)=>{
             console.log(err,"err");

@@ -1,6 +1,7 @@
 .parent{
     width:40%;
     margin: auto;
+   
 }
 .parent>div{
     display: flex;
