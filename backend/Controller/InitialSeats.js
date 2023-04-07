@@ -1,3 +1,5 @@
+
+// This function is used to create Initial state of Booking seats Matrix with zeros;
 const InitialSeats=()=>{
     let matrix=[];
     for (let i=0;i<12;i++){

@@ -1,3 +1,4 @@
+// Importing using require keyword (by common.js method)
 const express=require('express');
 const cors=require("cors");
 const { connection } = require('./Configue/db');
@@ -17,17 +18,19 @@ app.use(express.json());
 app.use(cors({
     origin:"*"
 }))
-
+// Just for API Welcome
 app.get("/",(req,res)=>{
     res.send({"message":"Hi !, Warm welcome to book Train seats"})
 })
 
-// All Routes
+//<-------- All Routes --------------->
 
+// to get all the seats booked information;
 app.use("/seats",getSeatsRouter);
+// for adding/updating the seats in database along with middlewares Validator & Overflow to handle edge cases 
 app.use("/update",Validator,OverFlow,updateSeatsRouter);
 
-
+// <-------- Listening to port ------------->
 app.listen(port, async()=>{
     try {
         await connection
