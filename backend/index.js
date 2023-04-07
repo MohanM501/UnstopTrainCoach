@@ -1,12 +1,14 @@
 const express=require('express');
 const cors=require("cors");
 const { connection } = require('./Configue/db');
+const { getSeatsRouter } = require('./Routes/getseats.route');
+const { updateSeatsRouter } = require('./Routes/updateSeats.route');
 require("dotenv").config()
 
 const app=express();
 const port=process.env.PORT || 8080 ;
 
-// Inbuilt middleware from express to parse incoming JSON data for POST request.
+// Inbuilt middleware from express to parse incoming JSON data.
 app.use(express.json());
 
 // cors allows access to restricted resources outside the domain.
@@ -15,8 +17,14 @@ app.use(cors({
 }))
 
 app.get("/",(req,res)=>{
-    res.send({"msg":"Hi !, Warm welcome to book Train seats"})
+    res.send({"message":"Hi !, Warm welcome to book Train seats"})
 })
+
+// All Routes
+
+app.use("/seats",getSeatsRouter);
+app.use("/update",updateSeatsRouter);
+
 
 app.listen(port, async()=>{
     try {
