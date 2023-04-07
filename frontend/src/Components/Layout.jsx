@@ -3,10 +3,12 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Get_Matrix } from '../Redux/action';
+
 import "./Layout.css";
 
 const Layout = () => {
     const [array,setArray]=useState([]);
+    const [diff,setDiff]=useState([]);
     const dispatch=useDispatch();
     const {matrix,booked,isLoading}=useSelector(store=>store);
     
@@ -21,20 +23,26 @@ const Layout = () => {
         }
         console.log(arr,"arr in matrix useEffect");
         setArray(arr);
-    },[matrix])
+       if(booked){
+        setDiff([...diff,Number(booked)])
+       }
+        
+    },[matrix,booked,diff])
 
     useEffect(()=>{
         let arr=new Array(80).fill(0);
-        console.table(arr,"arr")
+        console.table(arr,"arr");
+        
         setArray(arr)
         dispatch(Get_Matrix);
-    },[]);
+    },[dispatch]);
+
     
   return (
     <div className='container'>
             {array.length>0 && array.map((item,ind)=>{
                 return (
-                    (ind+1>=70?<div key={ind} className={item==0?"blue":"blue1"}>{ind+1}</div>:((ind+1-3)%7===0?<div key={ind}  className={item==0?"gap":"gap1"}>{ind+1}</div>:<div key={ind} className={item===0?'child':'child1'}>{ind+1}</div> ))     
+                    (ind+1>diff[0] && ind+1<=diff[diff.length-1]?<div key={ind} className={item===0?"blue":"blue1"}>{ind+1}</div>:((ind+1-3)%7===0?<div key={ind}  className={item===0?"gap":"gap1"}>{ind+1}</div>:<div key={ind} className={item===0?'child':'child1'}>{ind+1}</div> ))     
                 )
             })}
     </div>
