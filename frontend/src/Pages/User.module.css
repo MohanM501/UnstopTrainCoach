@@ -1,0 +1,9 @@
+.parent{
+    width:40%;
+    margin: auto;
+}
+.parent>div{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}

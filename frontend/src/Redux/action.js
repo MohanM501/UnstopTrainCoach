@@ -1,4 +1,4 @@
-import types from "./actionTypes";
+import * as types from "./actionTypes";
 import axios from "axios";
 
 const URL=`${process.env.REACT_APP_API_URL}`;
@@ -26,8 +26,8 @@ const Get_Matrix=(dispatch)=>{
     dispatch(Get_Request());
     return axios.get(`${URL}/seats`)
     .then((r)=>{
-        console.log(r.data,"r.data in get request");
-        dispatch(Get_Success(r.data))
+        console.log(r.data.message[0],"r.data in get request");
+        dispatch(Get_Success(r.data.message[0]))
     })
     .catch((err)=>{
         dispatch(Get_Failure())
@@ -35,5 +35,34 @@ const Get_Matrix=(dispatch)=>{
     
 }
 
-export {Get_Matrix}
+const Update_Request=()=>{
+    return{
+        type:types.UPDATE_PATCH_REQUEST
+    }
+}
+const Update_Success=()=>{
+    return{
+        type:types.UPDATE_PATCH_SUCCESS
+    }
+}
+const Update_Failure=()=>{
+    return{
+        type:types.UPDATE_PATCH_FAILURE
+    }
+}
+
+
+const Update_Matrix=(quearyParams)=>(dispatch)=>{
+        dispatch(Update_Request());
+        return axios.patch(`${URL}/update/seats`,quearyParams)
+        .then((r)=>{
+            console.log(r,"r.data");
+            dispatch(Update_Success());
+        }).catch((err)=>{
+            console.log(err,"err");
+            dispatch(Update_Failure());
+        })
+}
+
+export {Get_Matrix,Update_Matrix}
 

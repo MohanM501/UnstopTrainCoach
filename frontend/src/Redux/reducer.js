@@ -3,7 +3,8 @@ import * as types from "./actionTypes";
 const state={
     isLoading:false,
     isError:false,
-    matrix:[]
+    matrix:[],
+    booked:0
 }
 
 const reducer=(oldState=state,action)=>{
@@ -14,9 +15,18 @@ const reducer=(oldState=state,action)=>{
             return {...oldState,isLoading:true};
         
         case types.MATRIX_GET_SUCCESS:
-            return {...oldState,isLoading:false,matrix:payload}
+            return {...oldState,isLoading:false,matrix:payload.matrix,booked:payload.booked}
 
         case types.MATRIX_GET_FAILURE:
+            return {...oldState,isLoading:false,isError:true}
+        
+        case types.UPDATE_PATCH_REQUEST:
+            return {...oldState,isLoading:true};
+        
+        case types.UPDATE_PATCH_SUCCESS:
+            return {...oldState,isLoading:false}
+        
+        case types.UPDATE_PATCH_FAILURE:
             return {...oldState,isLoading:false,isError:true}
 
         default:
