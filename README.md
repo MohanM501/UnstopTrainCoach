@@ -30,5 +30,6 @@ Backend:- <a href="https://outstanding-cod-wrap.cyclic.app/">  https://outstandi
   <li>MongoDB Atlas</li>
   <li>Express</li>
   <li>Chakra UI</li>
+  <li>Mongoose</li>
 </ul>
 
