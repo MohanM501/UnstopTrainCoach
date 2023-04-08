@@ -1,7 +1,12 @@
+In this application, matrix or 2-D array data structure is used to store booked seats(represented by 0's) and available seats (represented by 1's) in the backend. 
+
+To implement this 2 Routes Created
+
+
 2 Routes Created
 
-- /seats -> GET request -> Gives you entities in database collection;
-- /update/seats -> PATCH request -> According to input value; matrix is updated;
+- 1. /seats -> GET request -> Gives you entities in database collection;
+- 2. /update/seats -> PATCH request -> According to input value; matrix is updated;
 
 matrix is consists of 0's and 1's ; 0's indicates not-booked seats and vice versa;
 
