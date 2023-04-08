@@ -3,7 +3,7 @@
 - /seats -> GET request -> Gives you entities in database collection;
 - /update/seats -> PATCH request -> According to input value; matrix is updated;
 
-matrix is consists of 0's and 1's ; 0's indicates not-booked and vice versa;
+matrix is consists of 0's and 1's ; 0's indicates not-booked seats and vice versa;
 
 Inputs:
 - Only one Input expected from User i.e No_of_seats ;
