@@ -15,5 +15,11 @@ Tech Stacks used:
 - Chakra - To add css to each elements in all pages
 - Redux-thunk - Used as middleware to call the function to send action object to reducer
 
+Layout 
+- Red color -> reserved seats
+- Blue color -> Currently reserved seats
+- Green color -> Available seats
+
+
 
 
