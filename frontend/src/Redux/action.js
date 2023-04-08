@@ -21,12 +21,11 @@ const Get_Failure=()=>{
     }
 }
 
-
+// Get_Matrix is used to perform GET API call, and sets matrix data in the redux-store(global state)
 const Get_Matrix=(dispatch)=>{
     dispatch(Get_Request());
     return axios.get(`${URL}/seats`)
     .then((r)=>{
-        console.log(r.data.message[0],"r.data in get request");
         dispatch(Get_Success(r.data.message[0]))
     })
     .catch((err)=>{
@@ -35,6 +34,7 @@ const Get_Matrix=(dispatch)=>{
     
 }
 
+// returns action object
 const Update_Request=()=>{
     return{
         type:types.UPDATE_PATCH_REQUEST
@@ -51,16 +51,14 @@ const Update_Failure=()=>{
     }
 }
 
-
+// Update_Matrix is used to Perform PATCH request to Sends the no_of_seats value to backend to resever seats;
 const Update_Matrix=(quearyParams)=>(dispatch)=>{
         dispatch(Update_Request());
         return axios.patch(`${URL}/update/seats`,quearyParams)
         .then((r)=>{
-            console.log(r.data.message,"r.data");
             alert(r.data.message);
             dispatch(Update_Success());
         }).catch((err)=>{
-            console.log(err,"err");
             dispatch(Update_Failure());
         })
 }

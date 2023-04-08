@@ -7,7 +7,9 @@ function App() {
   
   return (
     <div>
+        {/* Navbar presents in each page at the top to navigate randomly*/}
         <Navbar/>
+        {/* To Navigate to different pages based on route, AllRoutes Component is used */}
         <AllRoutes/>
     </div>
   );

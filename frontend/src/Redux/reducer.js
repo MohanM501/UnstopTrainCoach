@@ -1,5 +1,6 @@
 import * as types from "./actionTypes";
 
+// Initial State of the application;
 const state={
     isLoading:false,
     isError:false,

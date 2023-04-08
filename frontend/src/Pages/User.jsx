@@ -8,14 +8,18 @@ import { Get_Matrix,Update_Matrix } from '../Redux/action';
 const User = () => {
 
  const [no_of_seats,setNumber]=useState(0);
+// Defining the no_of_seats as a state which user going to enter ;
  const {booked}=useSelector(store=>store);
- const dispatch=useDispatch()
+// Taking booked value from store (redux store);
+ const dispatch=useDispatch();
+// To dispatch the action object to reducer to change the global state in store;
 
+// To set the value to no_of_seats entered by user handleChange function is used 
  const handleChange=(e)=>{
     setNumber(Number(e.target.value))
  }
+ // This is to call Update_Matrix and performing patch api call to update in backend and then again calling get request to update the same on the UI,
  const handleSubmit=()=>{
-    console.log(no_of_seats,"no_of_seats");
     dispatch(Update_Matrix({no_of_seats})).then((r)=>{
         dispatch(Get_Matrix);
     });
@@ -37,6 +41,7 @@ const User = () => {
         <div>
             <Text fontSize={"2xl"}>Coach Layout</Text>
         </div>
+        {/* Color Indicators */}
         <div className={styles.ind}>
             <ul style={{color:"red"}}>
                <li><Text>Red Indicates Booked seats</Text></li> 
@@ -52,6 +57,7 @@ const User = () => {
                 <li><Text>No of seats left :- {80-booked}</Text></li>
             </ul> 
         </div>
+        {/* Layout of Train Coach */}
         <div>
             <Layout/>
         </div>

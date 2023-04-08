@@ -1,7 +1,10 @@
+// To get the matrix value from backend;
+
 export const MATRIX_GET_REQUEST="MATRIX_GET_REQUEST";
 export const MATRIX_GET_SUCCESS="MATRIX_GET_SUCCESS";
 export const MATRIX_GET_FAILURE="MATRIX_GET_FAILURE";
 
+// To perform Updation in backend
 export const UPDATE_PATCH_REQUEST="UPDATE_PATCH_REQUEST";
 export const UPDATE_PATCH_SUCCESS="UPDATE_PATCH_SUCCESS";
 export const UPDATE_PATCH_FAILURE="UPDATE_PATCH_FAILURE";
