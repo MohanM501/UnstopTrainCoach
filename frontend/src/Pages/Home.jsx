@@ -4,7 +4,7 @@ import {Heading} from "@chakra-ui/react";
 const Home = () => {
   return (
     <div style={{display:"flex",justifyContent:"center"}}>
-        <Heading>Welcome to Train booking App</Heading>
+        <Heading fontSize={{md:"xl",lg:"3xl"}}>Welcome to Train booking App</Heading>
     </div>
   )
 }

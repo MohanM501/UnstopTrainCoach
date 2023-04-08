@@ -37,7 +37,7 @@ const User = () => {
         <div>
             <Text fontSize={"2xl"}>Coach Layout</Text>
         </div>
-        <div style={{margin:"30px",display:"flex",gap:"20px"}}>
+        <div className={styles.ind}>
             <ul style={{color:"red"}}>
                <li><Text>Red Indicates Booked seats</Text></li> 
             </ul>
